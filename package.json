@@ -15,6 +15,7 @@
     "system:dry-run": "node system-config/scripts/sync-config.mjs --dry-run",
     "system:auto-patch": "node system-config/scripts/sync-config.mjs --auto-patch",
     "system:sync": "node system-config/scripts/sync-config.mjs --sync",
+    "system:sandbox:test": "node --test system-config/sandbox/server.test.mjs",
     "system:sandbox": "node system-config/sandbox/server.mjs --watch",
     "system:release-gate": "node system-config/scripts/release-gate.mjs",
     "cf:deploy:nominal": "npm run system:release-gate && npm run build && wrangler pages deploy dist",
