@@ -24,6 +24,8 @@ The sync process updates the managed subset of:
 
 NOMINAL means all automated checks passed. It is a release gate, not a guarantee that every runtime condition is safe.
 
+The gateway binds only to a loopback address. Health and WebSocket requests reject non-loopback `Host` headers and browser `Origin` values; clients without an `Origin` header remain supported for local command-line use. WebSocket commands must be text JSON containing only one `command` field: `status`, `dry-run`, `auto-patch`, or `sync`. Errors use an `error` object with stable `code` and `message` fields. Run the contract tests with `npm run system:sandbox:test`.
+
 ### Tự động đồng bộ khi sửa Source of Truth
 
 Chạy `npm run system:sandbox`. Gateway sẽ theo dõi `system-config/system.config.json`. Khi file này thay đổi, sandbox sẽ debounce thay đổi, auto-patch các lỗi cấu hình an toàn, validate, strict dry-run, chạy release gate (TypeScript + Vite build), sau đó mới sync các target và phát `SYSTEM_CONFIG_SYNCED` qua WebSocket. Nếu gate thất bại, broadcast đồng bộ bị chặn.
