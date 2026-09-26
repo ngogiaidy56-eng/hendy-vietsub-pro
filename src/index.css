@@ -1,0 +1,206 @@
+@import "tailwindcss";
+@import "./generated/system-theme.css";
+
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--studio-bg);
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--studio-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 116, 139, .55) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, .4);
+  border-radius: 999px;
+}
+
+.studio-shell {
+  background:
+    radial-gradient(circle at 22% -10%, rgba(79, 124, 255, 0.11), transparent 34%),
+    radial-gradient(circle at 88% 18%, rgba(139, 92, 246, 0.08), transparent 28%),
+    var(--studio-bg) !important;
+}
+
+.studio-header {
+  box-shadow: 0 1px 0 rgba(255,255,255,.02), 0 12px 30px rgba(0,0,0,.16);
+  backdrop-filter: blur(18px);
+}
+
+.studio-header > div:first-child > div:first-child > div:first-child {
+  box-shadow: 0 0 0 1px rgba(34,211,238,.05), 0 8px 24px rgba(34,211,238,.06);
+}
+
+.studio-workspace {
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px),
+    var(--studio-bg) !important;
+  background-size: 32px 32px;
+}
+
+.studio-main-grid {
+  align-items: stretch;
+}
+
+.studio-main-grid > * {
+  min-width: 0;
+}
+
+/* Common editor surfaces: keep the existing component logic, refresh only presentation. */
+.studio-main-grid > aside,
+.studio-main-grid > div > div,
+.studio-bottom-stack > div,
+.studio-bottom-stack > section {
+  border-color: var(--studio-border) !important;
+}
+
+.studio-canvas-column {
+  min-width: 0;
+}
+
+/* Sidebars and panels */
+.studio-main-grid aside,
+.studio-main-grid [class*="rounded-xl"],
+.studio-main-grid [class*="rounded-2xl"] {
+  border-color: var(--studio-border) !important;
+}
+
+/* Reduce the heavy blue-black blocks and give the editor more depth. */
+.bg-\[\#0f172a\] {
+  background: linear-gradient(180deg, rgba(18, 27, 42, .96), rgba(10, 16, 26, .98)) !important;
+}
+
+.bg-\[\#111c35\] {
+  background: linear-gradient(180deg, rgba(19, 30, 48, .96), rgba(14, 22, 35, .96)) !important;
+}
+
+.bg-\[\#0b1120\] {
+  background: var(--studio-bg) !important;
+}
+
+.bg-neutral-950,
+.bg-slate-950 {
+  background-color: #080d15 !important;
+}
+
+.bg-neutral-900,
+.bg-slate-900 {
+  background-color: #0f1724 !important;
+}
+
+.border-slate-800,
+.border-neutral-800 {
+  border-color: var(--studio-border) !important;
+}
+
+/* Top nav controls */
+.studio-header button {
+  transition: transform .16s ease, background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease;
+}
+
+.studio-header button:hover {
+  transform: translateY(-1px);
+}
+
+.studio-header button[class*="bg-indigo-600"] {
+  box-shadow: 0 8px 22px rgba(79, 124, 255, .2);
+}
+
+/* Give all primary action buttons a cleaner studio look. */
+.studio-shell button[class*="bg-cyan-500"],
+.studio-shell button[class*="bg-indigo-600"],
+.studio-shell button[class*="bg-purple-600"] {
+  box-shadow: 0 8px 24px rgba(79, 124, 255, .16);
+}
+
+/* Inputs */
+.studio-shell input,
+.studio-shell textarea,
+.studio-shell select {
+  background-color: rgba(8, 13, 21, .8) !important;
+  border-color: var(--studio-border-strong) !important;
+  outline: none;
+}
+
+.studio-shell input:focus,
+.studio-shell textarea:focus,
+.studio-shell select:focus {
+  border-color: rgba(34, 211, 238, .5) !important;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, .07);
+}
+
+/* Timeline readability */
+.studio-bottom-stack {
+  padding-bottom: 1px;
+}
+
+.studio-bottom-stack > * {
+  box-shadow: 0 12px 32px rgba(0,0,0,.12);
+}
+
+/* Preview: make the canvas feel like a dedicated monitor. */
+.studio-canvas-column > *:first-child {
+  border-color: var(--studio-border-strong) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025), 0 18px 45px rgba(0,0,0,.18);
+}
+
+/* Hide some overly dense micro labels when room gets tight. */
+@media (max-width: 1180px) {
+  .studio-header nav button span {
+    display: none;
+  }
+  .studio-header nav button {
+    padding-inline: 9px;
+  }
+}
+
+@media (max-width: 900px) {
+  .studio-main-grid {
+    gap: 6px;
+  }
+  .studio-main-grid > :last-child {
+    max-width: 290px;
+  }
+}
+
+/* Subtle entrance animation */
+.studio-editor,
+.studio-bottom-stack {
+  animation: studioFade .22s ease-out both;
+}
+
+@keyframes studioFade {
+  from { opacity: .92; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}

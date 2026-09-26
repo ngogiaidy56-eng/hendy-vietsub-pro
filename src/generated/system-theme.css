@@ -1,0 +1,20 @@
+:root {
+  --sys-bg: #070b12;
+  --sys-panel: #0c121c;
+  --sys-panel-2: #0f1724;
+  --sys-surface: #121b2a;
+  --sys-border: rgba(148,163,184,0.12);
+  --sys-border-strong: rgba(148,163,184,0.20);
+  --sys-text: #e6edf7;
+  --sys-muted: #8793a6;
+  --sys-cyan: #22d3ee;
+  --sys-blue: #4f7cff;
+  --sys-purple: #8b5cf6;
+  --sys-success: #34d399;
+  --sys-warning: #fbbf24;
+  --sys-danger: #fb7185;
+  --sys-header-height: 60px;
+  --sys-workspace-gap: 8px;
+  --sys-panel-radius: 14px;
+  --sys-grid-size: 32px;
+}

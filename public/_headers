@@ -1,0 +1,12 @@
+/* AI Studio Pro generated from system-config */
+/manifest.json
+  Content-Type: application/manifest+json
+  Cache-Control: public, max-age=300
+
+/sw.js
+  Cache-Control: no-cache
+
+/
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: microphone=(self), camera=(self)

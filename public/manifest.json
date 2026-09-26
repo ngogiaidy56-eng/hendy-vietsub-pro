@@ -1,0 +1,13 @@
+{
+  "name": "AI Studio Pro",
+  "short_name": "AI Studio Pro",
+  "description": "AI video editor, Vietnamese subtitles, TTS voiceover and multi-channel audio studio.",
+  "lang": "vi",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#070b12",
+  "background_color": "#070b12",
+  "icons": []
+}

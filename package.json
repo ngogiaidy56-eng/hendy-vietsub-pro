@@ -1,0 +1,51 @@
+{
+  "name": "capcut-vietsub-studio",
+  "private": true,
+  "version": "3.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cf:dev": "npm run build && wrangler pages dev dist",
+    "cf:deploy": "npm run build && wrangler pages deploy dist",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .wrangler",
+    "system:validate": "node system-config/scripts/sync-config.mjs --validate",
+    "system:dry-run": "node system-config/scripts/sync-config.mjs --dry-run",
+    "system:auto-patch": "node system-config/scripts/sync-config.mjs --auto-patch",
+    "system:sync": "node system-config/scripts/sync-config.mjs --sync",
+    "system:sandbox": "node system-config/sandbox/server.mjs --watch",
+    "system:release-gate": "node system-config/scripts/release-gate.mjs",
+    "cf:deploy:nominal": "npm run system:release-gate && npm run build && wrangler pages deploy dist",
+    "system:watch": "node system-config/sandbox/server.mjs --watch",
+    "cap:sync:nominal": "npm run system:release-gate && npx cap sync",
+    "system:sandbox:once": "node system-config/sandbox/server.mjs"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.0",
+    "ws": "^8.18.3",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/ios": "^8.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.40.0",
+    "@capacitor/cli": "^8.5.2"
+  },
+  "description": "AI video editor, Vietnamese subtitles, TTS voiceover and multi-channel audio studio.",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

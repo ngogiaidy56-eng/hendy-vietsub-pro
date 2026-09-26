@@ -1,0 +1,13 @@
+{
+  "name": "CapCut Pro Studio - AI Video Editor & Vietsub Suite",
+  "description": "Professional video editing toolkit with hands-free AI Vietnamese voiceover, automatic transcription, multi-channel audio mixing, cinema full-screen interface, and Chrome Extension & APK Hub.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
+
+

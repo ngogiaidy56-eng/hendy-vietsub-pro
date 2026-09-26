@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hendy-video-studio.local/schemas/system-config.json",
+  "title": "Hendy Video Studio System Source of Truth",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "app", "ui", "runtime", "platforms", "sync"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "app": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "shortName", "product", "version", "description", "language"],
+      "properties": {
+        "name": {"type": "string", "minLength": 2},
+        "shortName": {"type": "string", "minLength": 2},
+        "product": {"type": "string", "minLength": 2},
+        "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+        "description": {"type": "string", "minLength": 10},
+        "language": {"type": "string", "minLength": 2}
+      }
+    },
+    "ui": {
+      "type": "object", "additionalProperties": false,
+      "required": ["theme", "layout", "status"],
+      "properties": {
+        "theme": {
+          "type": "object", "additionalProperties": false,
+          "required": ["bg","panel","panel2","surface","border","borderStrong","text","muted","cyan","blue","purple","success","warning","danger"],
+          "properties": {
+            "bg":{"type":"string"},"panel":{"type":"string"},"panel2":{"type":"string"},"surface":{"type":"string"},
+            "border":{"type":"string"},"borderStrong":{"type":"string"},"text":{"type":"string"},"muted":{"type":"string"},
+            "cyan":{"type":"string"},"blue":{"type":"string"},"purple":{"type":"string"},"success":{"type":"string"},
+            "warning":{"type":"string"},"danger":{"type":"string"}
+          }
+        },
+        "layout": {
+          "type": "object", "additionalProperties": false,
+          "required": ["headerHeight","workspaceGap","panelRadius","gridSize"],
+          "properties": {
+            "headerHeight": {"type":"integer","minimum":32,"maximum":160},
+            "workspaceGap": {"type":"integer","minimum":0,"maximum":40},
+            "panelRadius": {"type":"integer","minimum":0,"maximum":40},
+            "gridSize": {"type":"integer","minimum":8,"maximum":96}
+          }
+        },
+        "status": {
+          "type": "object", "additionalProperties": false,
+          "required": ["nominalLabel","nominalDescription","warningLabel","failedLabel"],
+          "properties": {
+            "nominalLabel": {"type":"string"},"nominalDescription": {"type":"string"},
+            "warningLabel": {"type":"string"},"failedLabel": {"type":"string"}
+          }
+        }
+      }
+    },
+    "runtime": {
+      "type":"object", "additionalProperties": false, "required":["sandbox","dev","cloudflare"],
+      "properties": {
+        "sandbox": {
+          "type":"object", "additionalProperties": false, "required":["host","port","wsPath","autoStartHint"],
+          "properties": {"host":{"type":"string"},"port":{"type":"integer","minimum":1,"maximum":65535},"wsPath":{"type":"string","pattern":"^/"},"autoStartHint":{"type":"boolean"}}
+        },
+        "dev": {"type":"object","additionalProperties": false,"required":["vitePort"],"properties":{"vitePort":{"type":"integer","minimum":1,"maximum":65535}}},
+        "cloudflare": {
+          "type":"object","additionalProperties": false,"required":["pagesOutput","compatibilityDate","workerName"],
+          "properties":{"pagesOutput":{"type":"string","minLength":1},"compatibilityDate":{"type":"string","minLength":1},"workerName":{"type":"string","minLength":1}}
+        }
+      }
+    },
+    "platforms": {
+      "type":"object", "additionalProperties": false, "required":["web","pwa","android","ios"],
+      "properties": {
+        "web":{"type":"object","additionalProperties":false,"required":["enabled"],"properties":{"enabled":{"type":"boolean"}}},
+        "pwa":{"type":"object","additionalProperties":false,"required":["enabled","startUrl","display","themeColor","backgroundColor"],"properties":{"enabled":{"type":"boolean"},"startUrl":{"type":"string"},"display":{"type":"string"},"themeColor":{"type":"string"},"backgroundColor":{"type":"string"}}},
+        "android":{"type":"object","additionalProperties":false,"required":["enabled","packageId","appName"],"properties":{"enabled":{"type":"boolean"},"packageId":{"type":"string"},"appName":{"type":"string"}}},
+        "ios":{"type":"object","additionalProperties":false,"required":["enabled","bundleId","appName"],"properties":{"enabled":{"type":"boolean"},"bundleId":{"type":"string"},"appName":{"type":"string"}}}
+      }
+    },
+    "sync": {
+      "type":"object", "additionalProperties": false, "required":["managedFiles","broadcastEvent","releaseGate"],
+      "properties":{"managedFiles":{"type":"array","minItems":1,"items":{"type":"string"}},"broadcastEvent":{"type":"string","minLength":1},"releaseGate":{"type":"string","const":"NOMINAL"}}
+    }
+  }
+}
